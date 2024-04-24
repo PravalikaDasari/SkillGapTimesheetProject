@@ -50,10 +50,21 @@ export class AccountProjectDisplayComponent implements OnInit{
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log("component deleted", accountProjectId);
         this.accountProjectService.deleteEmployee(accountProjectId).subscribe(res => {
+          Swal.fire({
+            title: 'Deleted Successfully',
+         
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: 'OK',
+            
+          })
           this.getAccountProjects();
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Handle cancel action
+        // No deletion occurred
       }
     });
   

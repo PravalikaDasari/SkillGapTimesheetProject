@@ -94,7 +94,7 @@ public interface TimesheetWeekRepo extends JpaRepository<TimesheetWeekEntity, In
 	           "ep.firstName, "+
 	           "ep.lastName ,"+
 	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Billable' THEN pdt.numberOfHours ELSE 0 END) AS billingHours, " +
-	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Non billable' THEN pdt.numberOfHours ELSE 0 END) AS nonBillingHours, " +
+	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Non-billable' THEN pdt.numberOfHours ELSE 0 END) AS nonBillingHours, " +
 	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Leave' THEN pdt.numberOfHours ELSE 0 END)/8 AS leaveHours) " +
 	           "FROM TimesheetWeekEntity pwt " +
 	           "JOIN  EmployeeEntity ep On ep.employeeId=pwt.approvedBy "+
@@ -115,7 +115,7 @@ public interface TimesheetWeekRepo extends JpaRepository<TimesheetWeekEntity, In
 			+ "acc.accountName, " + "ep.employeeCode, " + "ep.designation, " + "ap.projectManagerId, "
 			+ "crdStatus.referenceDetailValue, " + "CONCAT(ep.firstName,' ', ep.lastName), "
 			+ "SUM(CASE WHEN crd.referenceDetailValue = 'Billable' THEN pdt.numberOfHours ELSE 0 END), "
-			+ "SUM(CASE WHEN crd.referenceDetailValue = 'Non billable' THEN pdt.numberOfHours ELSE 0 END), "
+			+ "SUM(CASE WHEN crd.referenceDetailValue = 'Non-billable' THEN pdt.numberOfHours ELSE 0 END), "
 			+ "SUM(CASE WHEN crd.referenceDetailValue = 'Leave' THEN pdt.numberOfHours ELSE 0 END)/8 , ap.accountProjectId,pwt.weekNumber) "
 			+ "FROM TimesheetWeekEntity pwt " + "JOIN EmployeeEntity ep ON ep.employeeId = pwt.employeeId "
 			+ "JOIN AccountProjectsEntity ap ON ap.accountProjectId = pwt.accountProjectId "
@@ -137,7 +137,7 @@ public interface TimesheetWeekRepo extends JpaRepository<TimesheetWeekEntity, In
 	           "ep.firstName ,"+
 	           "ep.lastName ,"+
 	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Billable' THEN pdt.numberOfHours ELSE 0 END) AS billingHours, " +
-	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Non billable' THEN pdt.numberOfHours ELSE 0 END) AS nonBillingHours, " +
+	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Non-billable' THEN pdt.numberOfHours ELSE 0 END) AS nonBillingHours, " +
 	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Leave' THEN pdt.numberOfHours ELSE 0 END)/8 AS leaveHours) " +
 	           "FROM TimesheetWeekEntity pwt " +
 	           "JOIN  EmployeeEntity ep On ep.employeeId=pwt.approvedBy "+
@@ -164,7 +164,7 @@ public interface TimesheetWeekRepo extends JpaRepository<TimesheetWeekEntity, In
 	           "ep.firstName ,"+
 	           "ep.lastName ,"+
 	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Billable' THEN pdt.numberOfHours ELSE 0 END) AS billingHours, " +
-	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Non billable' THEN pdt.numberOfHours ELSE 0 END) AS nonBillingHours, " +
+	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Non-billable' THEN pdt.numberOfHours ELSE 0 END) AS nonBillingHours, " +
 	           "   SUM(CASE WHEN crd.referenceDetailValue = 'Leave' THEN pdt.numberOfHours ELSE 0 END)/8 AS leaveHours) " +
 	           "FROM TimesheetWeekEntity pwt " +
 	           "JOIN  EmployeeEntity ep On ep.employeeId=pwt.approvedBy "+
@@ -210,7 +210,7 @@ public interface TimesheetWeekRepo extends JpaRepository<TimesheetWeekEntity, In
 	        "crdStatus.referenceDetailValue, "+
 	        "CONCAT(ep.firstName,' ', ep.lastName), "+
 	        "SUM(CASE WHEN crd.referenceDetailValue = 'Billable' THEN pdt.numberOfHours ELSE 0 END), "+
-	        "SUM(CASE WHEN crd.referenceDetailValue = 'Non billable' THEN pdt.numberOfHours ELSE 0 END), "+
+	        "SUM(CASE WHEN crd.referenceDetailValue = 'Non-billable' THEN pdt.numberOfHours ELSE 0 END), "+
 	        "SUM(CASE WHEN crd.referenceDetailValue = 'Leave' THEN pdt.numberOfHours ELSE 0 END)/8,pwt.accountId) "+
 	        "FROM TimesheetWeekEntity pwt "+
 	        "JOIN EmployeeEntity ep ON ep.employeeId = pwt.employeeId "+

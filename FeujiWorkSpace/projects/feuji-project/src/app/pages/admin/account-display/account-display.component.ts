@@ -35,10 +35,21 @@ removeTask(accountId:number) {
     cancelButtonText: 'No, keep it'
   }).then((result) => {
     if (result.isConfirmed) {
+      console.log("component deleted", accountId);
       this.accountService.deleteEmployee(accountId).subscribe(res => {
+        Swal.fire({
+          title: 'Deleted Successfully',
+       
+          icon: 'success',
+          showCancelButton: true,
+          confirmButtonText: 'OK',
+          
+        })
         this.getAccount();
       });
     } else if (result.dismiss === Swal.DismissReason.cancel) {
+      // Handle cancel action
+      // No deletion occurred
     }
   });
 

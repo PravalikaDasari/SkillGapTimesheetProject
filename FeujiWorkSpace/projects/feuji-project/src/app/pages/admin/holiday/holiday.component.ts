@@ -80,10 +80,21 @@ export class HolidayComponent  implements OnInit
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log("component deleted", holidayId);
         this.data.deleteRow(holidayId).subscribe(res => {
+          Swal.fire({
+            title: 'Deleted Successfully',
+         
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: 'OK',
+            
+          })
           this.HolidaysByYear();
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Handle cancel action
+        // No deletion occurred
       }
     });
   }
