@@ -16,7 +16,7 @@ export class UpdateEmlpoyeeComponent implements OnInit {
     this.referenceUrl = this.shared.referenceUrl
   }
   public empuuId:string="";
-  public emp:any;
+  public emp:any={};
   public emp1:any;
   referenceUrl:string;
   genderReference:any

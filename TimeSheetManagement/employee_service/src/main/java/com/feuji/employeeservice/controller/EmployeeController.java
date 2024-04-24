@@ -238,15 +238,20 @@ public class EmployeeController {
 	 */
 	@GetMapping(path = "/getEmployeeDetailByUUiD/{uuid}")
 	public ResponseEntity<List<UpadteEmployeeDto>> getEmployeeDetailByUUiD(@PathVariable String uuid) {
-		try {
-			log.info("Fetching employee details for UUID: {}", uuid);
-			List<UpadteEmployeeDto> updateDta = employeeService.getEmployeeDetailByUUiD(uuid);
-			log.info("Retrieved employee details: {}", updateDta);
-			return ResponseEntity.ok(updateDta);
-		} catch (Exception e) {
-			log.error("An error occurred while fetching employee details for UUID {}: {}", uuid, e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
+	    try {
+	        log.info("Fetching employee details for UUID: {}", uuid);
+	        List<UpadteEmployeeDto> updateData = employeeService.getEmployeeDetailByUUiD(uuid);
+	    	log.info("Retrieved employee details: {}", updateData);
+	        if (updateData == null || updateData.isEmpty()) {
+	            log.info("No data found for UUID: {}", uuid);
+	            return ResponseEntity.noContent().build();  
+	        }
+	        log.info("Retrieved employee details: {}", updateData);
+	        return ResponseEntity.ok(updateData);
+	    } catch (Exception e) {
+	        log.error("An error occurred while fetching employee details for UUID {}: {}", uuid, e.getMessage(), e);
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    }
 	}
 
 	/**
