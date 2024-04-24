@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   public getRole() {
-    return localStorage.getItem('role');
+    return localStorage.getItem('designation');
   }
 
   public clear() {
