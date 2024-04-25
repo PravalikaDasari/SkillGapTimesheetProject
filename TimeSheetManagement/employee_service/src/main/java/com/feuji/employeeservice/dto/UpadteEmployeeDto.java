@@ -15,17 +15,25 @@ import lombok.ToString;
 public class UpadteEmployeeDto {
 	private Integer employeeId;
 	private String employeeCode;
+	
 	private String firstName;
+	
 	private String middleName;
+	
+	
 	private String lastName;
 	private String image;
 	private String designation;
 	private String email;
+	
+	
 	private Integer genderId;
+	
 	private String gender;
 	private Timestamp formattedDateOfJoining;
 	private Integer empTypeId;
 	private String empType;
+	
 	private String managerFirstName;
 	private String managerLastNamee;
 	private String managerMiddleName;
@@ -37,7 +45,7 @@ public class UpadteEmployeeDto {
 	private Integer statusId;
 	private String status;
 	private String uuid;
-	 private Boolean isDeleted;
+	 private Byte isDeleted;
 	 public String getDateOfJoining() {
 	        return formatDate(formattedDateOfJoining);
 	    }
