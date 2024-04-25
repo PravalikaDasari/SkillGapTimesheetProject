@@ -21,10 +21,7 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Intege
 
 	@Query("SELECT e.reportingManagerId FROM EmployeeEntity e WHERE e.employeeId = :employeeId")
 	public Integer getReportingMngIdByEmpId(@Param("employeeId") Integer employeeId);
-	
-//	@Query("SELECT new com.feuji.employeeservice.dto.EmployeeDto(e.firstName)FROM EmployeeEntity left joine WHERE e.designation LIKE '%manager%'")
-//    List<EmployeeDto> findDesignationsContainingManager(@Param("designation") String designation);
-	
+
 	@Query("SELECT new com.feuji.employeeservice.dto.AddEmployee(e.firstName, e.designation,e.employeeId) FROM EmployeeEntity e WHERE e.designation LIKE '%manager%'")
 	List<AddEmployee> findDesignationsContainingManager();
 

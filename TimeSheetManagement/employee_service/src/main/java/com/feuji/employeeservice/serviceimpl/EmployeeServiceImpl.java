@@ -99,17 +99,29 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public List<EmployeeEntity> getAllEmployees() {
-		return employeeRepository.findAll();
+	    log.debug("Attempting to retrieve all employees");
+        try {
+            List<EmployeeEntity> employees = employeeRepository.findAll();
+            log.debug("Successfully retrieved {} employees", employees.size());
+            return employees;
+        } catch (Exception e) {
+            log.error("Failed to retrieve employees", e);
+           
+            throw new RuntimeException("Failed to retrieve all employees", e);
+        }
 	}
 
 	@Override
 	public List<SaveEmployeeDto> getByReferenceTypeId(Integer referenceTypeId) {
-
+		
+		log.info("EmployeeServiceImpl.getByReferenceTypeId()  started " );
 		return employeeRepository.getByReferenceTypeId(referenceTypeId);
+		
 	}
 
 	@Override
 	public EmployeeEntity getById(Integer id) {
+		log.info("EmployeeServiceImpl.getById()  started " );
 		return employeeRepository.findById(id).orElse(null);
 	}
 
@@ -130,13 +142,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public EmployeeBean getReportingMngIdByEmpId(Integer employeeId) {
+		
+		log.info("EmployeeServiceImpl.getReportingMngIdByEmpId()  started " + employeeId);
 		EmployeeEntity entity = employeeRepository.findById(employeeId).orElseThrow();
+		log.info("EmployeeServiceImpl.getReportingMngIdByEmpId()  ended and fetched " + entity);
 		return entityToBean(entity);
 	}
 
 	public List<AddEmployee> getAllReportingManager() {
-
+		log.info("EmployeeServiceImpl.getAllReportingManager()  started " );
 		List<AddEmployee> employees = employeeRepository.findDesignationsContainingManager();
+		log.info("EmployeeServiceImpl.getAllReportingManager()  ended and fetched  employees"+employees );
 		return employees;
 	}
 
@@ -235,8 +251,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<EmployeeDisplayDto> getEmployeeDetails() {
 		try {
+			log.info("EmployeeServiceImpl.getEmployeeDetails()  started " );
 
 			List<EmployeeDisplayDto> empdetails = employeeRepository.getEmployeeDetails();
+			log.info("EmployeeServiceImpl.getEmployeeDetails()  retrived and ended " );
 			return empdetails;
 		} catch (Exception e) {
 			log.info(e.getMessage());
@@ -248,11 +266,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<UpadteEmployeeDto> getEmployeeDetailByUUiD(String uuid) {
 		try {
-
+			log.info("EmployeeServiceImpl.getEmployeeDetailByUUiD1()  started " + uuid);
 			List<UpadteEmployeeDto> empdetails = employeeRepository.getEmployeeDetailByUUiD(uuid);
+
+			log.info("EmployeeServiceImpl.getEmployeeDetailByUUiD1()  fetched Employee details" + empdetails);
 
 			return empdetails;
 		} catch (Exception e) {
+			log.info("EmployeeServiceImpl.getEmployeeDetailByUUiD1()  catch block" + e.getMessage());
 
 		}
 		return null;
@@ -260,25 +281,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public EmployeeEntity updateEmployee(EmployeeBean employeeBean) {
+		log.info("EMployeeServiceimpl.updateEmployee()  started {}", employeeBean);
 		EmployeeEntity accountEntity1 = beanToEntity(employeeBean);
 		if (employeeBean == null) {
 			throw new IllegalArgumentException("Account bean object is null");
 		}
 
 		EmployeeEntity savedEntity = employeeRepository.save(accountEntity1);
-
+		log.info("EMployeeServiceimpl.updateEmployee()  ended and fetched {}", savedEntity);
 		return savedEntity;
 
 	}
 
 	@Override
 	public EmployeeEntity delete(Integer employeeId) {
-		log.info("service method{}", employeeId);
+		log.info("EMployeeServiceimpl.delete()  started {}", employeeId);
 		EmployeeEntity optional = employeeRepository.findById(employeeId)
 				.orElseThrow(() -> new IllegalArgumentException("id not found"));
 		optional.setIsDeleted(CommonConstants.TRUE);
 		EmployeeBean entityToBean = entityToBean(optional);
+		log.info("EMployeeServiceimpl.delete()  deleted {}", entityToBean);
 		EmployeeEntity deletedEmployee = updateEmployee(entityToBean);
+		log.info("EMployeeServiceimpl.delete()  ended {}", entityToBean);
 
 		return deletedEmployee;
 
