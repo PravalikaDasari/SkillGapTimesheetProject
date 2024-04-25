@@ -63,7 +63,7 @@ public class UpadteEmployeeDto {
 				Timestamp formattedDateOfJoining, Integer empTypeId, String empType, String managerFirstName,
 				String managerLastNamee, String managerMiddleName, Integer managerId, Integer deliveryUnitId,
 				String deliveryUnit, Integer businessUnitId, String businessUnit, Integer statusId, String status,
-				String uuid, Boolean isDeleted) {
+				String uuid, Byte isDeleted) {
 			super();
 			this.employeeId = employeeId;
 			this.employeeCode = employeeCode;
