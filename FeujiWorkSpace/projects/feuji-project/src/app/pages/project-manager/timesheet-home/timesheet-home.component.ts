@@ -68,8 +68,8 @@ export class TimesheetHomeComponent implements OnInit, AfterViewChecked {
     {
      
       Swal.fire({
-        text: 'timesheetalready submitted',
-        icon: 'warning',
+        text: 'timesheet already submitted',
+      
         confirmButtonText: 'OK',
       });
 
@@ -566,7 +566,7 @@ export class TimesheetHomeComponent implements OnInit, AfterViewChecked {
       {
        
         Swal.fire({
-          text: 'timesheetalready submitted you cant delete',
+          text: 'timesheet already submitted you cant delete',
           icon: 'warning',
           confirmButtonText: 'OK',
         });
@@ -671,8 +671,8 @@ export class TimesheetHomeComponent implements OnInit, AfterViewChecked {
       }
     } else {
       Swal.fire({
-        text: 'timesheetalready submitted',
-        icon: 'warning',
+        text: 'timesheet already submitted',
+       
         confirmButtonText: 'OK',
       });
     }
@@ -742,7 +742,7 @@ export class TimesheetHomeComponent implements OnInit, AfterViewChecked {
     if( this.fetchedDetails[0].timesheetStatusname === 'Submitted'|| this.fetchedDetails[0].timesheetStatusname === 'Approved')
       {
         Swal.fire({
-          title: 'Timesheet Submitted Successfully',
+          title: 'Timesheet submitted u can not edit',
           
           confirmButtonText: 'OK',
         });
